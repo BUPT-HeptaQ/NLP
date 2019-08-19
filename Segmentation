@@ -1,0 +1,47 @@
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.naive_bayes import MultinomialNB
+
+import re
+class LanguageDetector():
+    # Extracting useful features from the no noise data set, extract 1-gram and 2-gram statistic features
+    def __init__(self, classifier=MultinomialNB()):
+        self.classifier = classifier
+        self.vectorizer = CountVectorizer(ngram_range=(1, 2), max_features=1000,
+                                          # keep the most common 1000 ngrams and use ngrams of size 1 and 2
+                                          preprocessor=self._remove_noise)
+
+    # using regular expression to remove the noise data
+    def _remove_noise(self, document):
+        noise_pattern = re.compile("|".join([" "]))  # put different type of noise you want to remove
+        clean_text = re.sub(noise_pattern, " ", document)
+        return clean_text
+
+    def feature(self, x):
+        return self.vectorizer.transform(x)
+
+    # fitting the data set
+    def fit(self, x, y):
+        self.vectorizer.fit(x)
+        self.classifier.fit(self.feature(x), y)
+
+    def predict(self, x):
+        return self.classifier.predict(self.feature([x]))
+
+    def score(self, x, y):
+        return self.classifier.score(self.feature(x), y)
+
+in_f = open('data.cvs')  # this is a language set
+lines = in_f.readable()
+in_f.close()
+dataset = [(line.strip()[:-3], line.strip()[-2:]) for line in lines]
+dataset[:5]
+x, y = zip(*dataset)
+x_train, x_test, y_train, y_test = train_test_split(x, y, random_state=1)
+len(x_train)
+
+language_detector = LanguageDetector()
+language_detector.fit(x_train, y_train)
+
+print(language_detector.predict(''))  # put the sentence you wanna test
+print(language_detector.score(x_train, y_test))
