@@ -1,0 +1,25 @@
+import numpy as np
+import pandas as pd
+import re
+
+mail_file = pd.read_csv(" ")
+# wipe off all null values
+mail_file = mail_file[['Id', 'ExtractedBodyText']].dropna()
+
+#  pre-processing mail data
+def clean_email_text(text):
+    text = text.replace('\n', " ")
+    text = re.sub(r"-", " ", text)  # divide the words which has "-"
+    text = re.sub(r"\d + /\d + /\d +", " ", text)  # date info is irrelevant
+    text = re.sub(r"[0-2]?[0-9]:[0-6]:[0-9]]", " ", text)  # meaningless time data
+    text = re.sub(r"[\w]+@[\.\w] +", " ", text)  # the email addresses are useless
+    text = re.sub(r"/[a-zA-Z]*[:\//\]*[A-Za-z0-9\-_] + \. + [A-Za-z0-9\.\/%&=\?\-_]+/i", " ", text)  # Http info is useless
+    pure_text = ''
+    # in case other special chars, we loop it again nad filter the data
+    for letter in text:
+        # only leave chars and space
+        if letter.isalpha() or letter == ' ':
+            pure_text += letter
+    # reduce the other meaningless words and get the useful words
+    text = ' '.join(word for word in pure_text.split() if len(word) > 1)
+    return text
