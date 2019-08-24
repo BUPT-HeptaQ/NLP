@@ -47,6 +47,10 @@ for tag in distinct_tags:
     print(first_backpointer)
     print(first_viterbi)
 
+# store everything above in Viterbi and Backpointer variables
+Viterbi.append(first_viterbi)
+backpointer.append(first_backpointer)
+
 # find the best tag
 best_tag = max(first_viterbi.keys(), key=lambda tag: first_viterbi[tag])
 print("Word", "'" + sentence[0] + "'", "current best two-tag sequence:", first_backpointer[best_tag], best_tag)
