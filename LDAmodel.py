@@ -55,3 +55,4 @@ LDA.print_topics(num_topics=20, num_words=5)
 
 LDA.get_document_topics(bow=20)
 LDA.get_term_topics(word_id=20)
+
