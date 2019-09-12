@@ -45,3 +45,4 @@ language_detector.fit(x_train, y_train)
 
 print(language_detector.predict(''))  # put the sentence you wanna test
 print(language_detector.score(x_train, y_test))
+
