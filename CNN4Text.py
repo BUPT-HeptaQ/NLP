@@ -52,3 +52,4 @@ model.add(Activation('sigmoid'))
 # compile
 model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 model.fit(X_train, y_train, batch_size=batch_size, nb_epoch=nb_epoch)
+
