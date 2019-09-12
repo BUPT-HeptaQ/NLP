@@ -55,3 +55,4 @@ model.add(Dense(128, activation='sigmoid'))
 model.compile(loss='mse', optimizer='adam')
 
 model.fit(x, y, nb_epoch=50, batch_size=4096)
+
