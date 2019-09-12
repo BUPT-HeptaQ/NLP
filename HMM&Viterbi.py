@@ -102,3 +102,4 @@ for w in sentence:
 for t in best_tagsequence:
     print(t, end=" " "\n")
     print("The probability of the best tag sequence is:", prob_tagsequence)
+
