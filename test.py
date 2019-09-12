@@ -46,3 +46,4 @@ print(", ".join(seg_list))
 
 lines = open('Harry Potter.txt').read()
 print(" ".join(analyse.extract_tags(lines, topK=20, withWeight=False, allowPOS=())))
+
