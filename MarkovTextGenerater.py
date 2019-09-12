@@ -48,3 +48,4 @@ for i in range(0, length):
     chain += current_word + " "
     current_word = retrieve_random_word(word_dict[current_word])
 print(chain)
+
