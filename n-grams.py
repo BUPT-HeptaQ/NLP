@@ -49,3 +49,4 @@ ngrams = ngrams(content, 2)
 sortedNGrams = sorted(ngrams.items(), key=operator.itemgetter(1),reverse=True)
 print(sortedNGrams)
 print("2-gram count is: " + str(len(ngrams)))
+
