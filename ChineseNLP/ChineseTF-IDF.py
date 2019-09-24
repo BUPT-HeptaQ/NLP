@@ -7,4 +7,3 @@ lines = data_file.content.values.tolist()
 content = " ".join(str(lines))
 outcome = " ".join(analyse.extract_tags(content, topK=20, withWeight=False, allowPOS=()))
 print(outcome)
-
