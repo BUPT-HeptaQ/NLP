@@ -1,4 +1,4 @@
-rom gensim import corpora, models, similarities
+from gensim import corpora, models, similarities
 import gensim
 import pandas as pd
 import jieba
