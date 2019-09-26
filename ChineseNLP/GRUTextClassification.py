@@ -137,3 +137,4 @@ classifier.fit(text_train, label_train, steps=1000)
 label_predicted = classifier.predict(text_test)['class']
 score = metrics.accuracy_score(label_test, label_predicted)
 print('Accuracy: {0:f}'.format(score))
+
